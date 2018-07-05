@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
+import Navigation from '../utils/Navigation';
 
 class Home extends React.Component {
   render() {
@@ -8,7 +9,7 @@ class Home extends React.Component {
         <Text>Home Screen</Text>
         <Button
           title="Go to About"
-          onPress={() => this.props.navigation.navigate('About')}
+          onPress={() => Navigation.navigate('About')}
         />
       </View>
     );
