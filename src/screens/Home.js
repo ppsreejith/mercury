@@ -1,11 +1,15 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
 
 class Home extends React.Component {
   render() {
     return (
       <View style={styles.container}>
         <Text>Home Screen</Text>
+        <Button
+          title="Go to About"
+          onPress={() => this.props.navigation.navigate('About')}
+        />
       </View>
     );
   }
