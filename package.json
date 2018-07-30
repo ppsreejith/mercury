@@ -17,6 +17,9 @@
   "jest": {
     "preset": "react-native"
   },
+  "rnpm": {
+    "assets": ["./assets/fonts/Roboto"]
+  },
   "dependencies": {
     "axios": "^0.18.0",
     "babel-eslint": "^8.2.1",
