@@ -24,6 +24,7 @@ MERGED from [com.facebook.react:react-native:0.55.4] /home/ppsreejith/app-templa
 		ADDED from /home/ppsreejith/app-template/android/app/src/main/AndroidManifest.xml:5:22-75
 application
 ADDED from /home/ppsreejith/app-template/android/app/src/main/AndroidManifest.xml:7:5-24:19
+MERGED from [apptemplate:react-native-interactable:unspecified] /home/ppsreejith/app-template/android/app/build/intermediates/exploded-aar/apptemplate/react-native-interactable/unspecified/AndroidManifest.xml:13:5-16:19
 MERGED from [com.facebook.react:react-native:0.55.4] /home/ppsreejith/app-template/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.55.4/AndroidManifest.xml:13:5-20
 MERGED from [com.android.support:appcompat-v7:23.0.1] /home/ppsreejith/app-template/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:support-v4:23.0.1] /home/ppsreejith/app-template/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/AndroidManifest.xml:22:5-20
@@ -66,6 +67,7 @@ ADDED from /home/ppsreejith/app-template/android/app/src/main/AndroidManifest.xm
 uses-sdk
 INJECTED from /home/ppsreejith/app-template/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [apptemplate:react-native-material-kit:unspecified] /home/ppsreejith/app-template/android/app/build/intermediates/exploded-aar/apptemplate/react-native-material-kit/unspecified/AndroidManifest.xml:5:5-44
+MERGED from [apptemplate:react-native-interactable:unspecified] /home/ppsreejith/app-template/android/app/build/intermediates/exploded-aar/apptemplate/react-native-interactable/unspecified/AndroidManifest.xml:7:5-9:41
 MERGED from [com.facebook.react:react-native:0.55.4] /home/ppsreejith/app-template/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.55.4/AndroidManifest.xml:7:5-9:41
 MERGED from [com.android.support:appcompat-v7:23.0.1] /home/ppsreejith/app-template/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:support-v4:23.0.1] /home/ppsreejith/app-template/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/AndroidManifest.xml:20:5-43
@@ -83,6 +85,10 @@ MERGED from [com.facebook.soloader:soloader:0.1.0] /home/ppsreejith/app-template
 	android:minSdkVersion
 		INJECTED from /home/ppsreejith/app-template/android/app/src/main/AndroidManifest.xml
 		INJECTED from /home/ppsreejith/app-template/android/app/src/main/AndroidManifest.xml
+uses-permission#android.permission.VIBRATE
+ADDED from [apptemplate:react-native-interactable:unspecified] /home/ppsreejith/app-template/android/app/build/intermediates/exploded-aar/apptemplate/react-native-interactable/unspecified/AndroidManifest.xml:11:5-66
+	android:name
+		ADDED from [apptemplate:react-native-interactable:unspecified] /home/ppsreejith/app-template/android/app/build/intermediates/exploded-aar/apptemplate/react-native-interactable/unspecified/AndroidManifest.xml:11:22-63
 android:uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
 IMPLIED from /home/ppsreejith/app-template/android/app/src/main/AndroidManifest.xml:1:1-26:12 reason: org.webkit.android_jsc has a targetSdkVersion < 4
 android:uses-permission#android.permission.READ_PHONE_STATE
