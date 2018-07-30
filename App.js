@@ -10,11 +10,11 @@ export default class extends React.Component {
     return (
       <Provider store={Store}>
         <App
-            ref={ref => {
+          ref={(ref) => {
                 Navigation.setTopLevelNavigator(ref);
-              } }
+              }}
         />
       </Provider>
-    )
+    );
   }
-};
+}

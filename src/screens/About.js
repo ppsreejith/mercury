@@ -19,9 +19,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center'
-  },
+  }
 });
 
-export default connect(
-  ({ test }) => ({ test })
-)(About);
+export default connect(({ test }) => ({ test }))(About);

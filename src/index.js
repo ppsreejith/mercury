@@ -8,6 +8,6 @@ export default createStackNavigator(
     About
   },
   {
-    initialRouteName: 'Home',
+    initialRouteName: 'Home'
   }
 );
