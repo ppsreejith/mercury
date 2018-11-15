@@ -178,7 +178,7 @@
         jumboMode="false"
         optimize="true"
         revision="23.0.1"
-        sha1="944dc0ea5b01b0ad4bf44569d0b83753a4220053">
+        sha1="022a4952b517a7b2ab807101a03f1766a6ff862d">
         <dex dex="/home/ppsreejith/app-template/android/app/build/intermediates/pre-dexed/debug/apptemplate-react-native-material-kit-unspecified_f68b9d7c9d146a0f555ba48a6da7cad694248b52.jar" />
     </item>
     <item
