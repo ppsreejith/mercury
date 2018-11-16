@@ -5,7 +5,16 @@ import busData from '../../utils/bus-data';
 
 const transformedData = _.reduce(
   busData,
-  (acc, value) => _.set(acc, _.get(value, 'id'), value),
+  (acc, value) =>
+    _.set(
+      acc,
+      _.get(value, 'id'),
+      _.extend({}, value, {
+        coordinates: _.first(_.get(value, 'coordinates')),
+        rotation: _.first(_.get(value, 'rotation')),
+        seats: _.first(_.get(value, 'seats'))
+      })
+    ),
   {}
 );
 
