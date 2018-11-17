@@ -24,7 +24,8 @@ class Home extends React.Component {
 
   render() {
     const selected = this.props.locations.get('selected');
-    const { origin, destination, center, delta } = getCenter(selected.toJS());
+    const { zoom, origin, destination, center, delta } = getCenter(selected.toJS());
+    console.log('zoom is', zoom);
     //#HACK
     if (this._center && this._center != center) {
       this.map.animateToRegion(
@@ -39,7 +40,7 @@ class Home extends React.Component {
     // end #HACK
     const buses = this.props.buses.toJS();
     const BusMarkers = _.chain(buses).filter(busFilter).map(({ coordinates, rotation, id, seats }) => (
-      <BusMarker key={id} seats={seats} coordinates={coordinates} rotation={rotation}/>
+      <BusMarker key={id} zoom={zoom} seats={seats} coordinates={coordinates} rotation={rotation}/>
     )).value();
     const onRegionChange = _.debounce(region => this.props.dispatch(setLocation(region)), 300);
     const BusMap = (

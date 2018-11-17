@@ -19,7 +19,10 @@ export const getCenter = ({ coordinates, description }) => {
     latitude: 12.93286389862078,
     longitude: 77.6279523409903
   };
-  const destination = coordinates ? coordinates : {};
+  const destination = coordinates ? {
+    latitude: _.get(coordinates, 'lat'),
+    longitude: _.get(coordinates, 'lng')
+  } : {};
   const center =
     coordinates ?
     {
@@ -27,17 +30,20 @@ export const getCenter = ({ coordinates, description }) => {
       longitude: (origin.longitude + destination.longitude)/2
     } :
     origin;
-  const delta = coordinates ? {
-    latitudeDelta: Math.abs(origin.latitude - destination.latitude) + 0.01522,
-    longitudeDelta: Math.abs(origin.longitude - destination.longitude) + 0.00921
-  } : {
+  const originalDelta = {
     latitudeDelta: 0.01522,
     longitudeDelta: 0.00921,
   };
+  const delta = coordinates ? {
+    latitudeDelta: Math.abs(origin.latitude - destination.latitude) + 0.01522,
+    longitudeDelta: Math.abs(origin.longitude - destination.longitude) + 0.004921
+  } : originalDelta;
+  const zoom = originalDelta.latitudeDelta / delta.latitudeDelta;
   return {
     center,
     delta,
     origin,
-    destination
+    destination,
+    zoom
   }
 }
