@@ -8,9 +8,8 @@ export const setLocation = ({ latitude, longitude }) => (dispatch) => {
 
 export const loadPlaces = ({ query }) => (dispatch) => {
   console.log('loading places');
-  findPlaces({ query })
-    .then(places => {
-      console.log('places are', places);
-    })
-    .catch(err => console.log('get places error is', err));
+  findPlaces({ query }, (err, places) => {
+    console.log('places are', places);
+    console.log('get places error is', err);
+  });
 };
