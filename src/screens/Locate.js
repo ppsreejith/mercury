@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { TextInput, FlatList, StyleSheet, Text, View, Image } from 'react-native';
 import { getTheme } from 'react-native-material-kit';
 import Interactable from 'react-native-interactable';
+import { loadPlaces } from '../actions/locations';
 
 const theme = getTheme();
 
@@ -22,6 +23,7 @@ class Locate extends React.Component {
   };
   
   render() {
+    this.props.dispatch(loadPlaces({ query: 'a' }));
     return (
       <View style={styles.container}>
         <TextInput
@@ -65,4 +67,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Locate;
+export default connect(({ buses }) => ({ buses }))(Locate);
