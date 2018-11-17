@@ -15,3 +15,8 @@ export const findPlaces = ({ input }) => request({
   url: 'place/autocomplete/json',
   data: { input }
 });
+
+export const getPlace = ({ place_id }) => request({
+  url: 'place/details/json',
+  data: { placeid: place_id, fields: 'geometry' }
+});

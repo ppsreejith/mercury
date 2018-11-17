@@ -23,8 +23,8 @@ class Home extends React.Component {
       latitudeDelta: 0.01522,
       longitudeDelta: 0.00921,
     }
+    const selected = this.props.locations.get('selected');
     const buses = this.props.buses.toJS();
-    console.log('buses are', _.filter(buses, busFilter));
     const BusMarkers = _.chain(buses).filter(busFilter).map(({ coordinates, rotation, id, seats }) => (
       <BusMarker key={id} seats={seats} coordinates={coordinates} rotation={rotation}/>
     )).value();
@@ -97,4 +97,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default connect(({ buses }) => ({ buses }))(Home);
+export default connect(({ buses, locations }) => ({ buses, locations }))(Home);
