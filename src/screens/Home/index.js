@@ -6,42 +6,64 @@ import Navigation from '../../utils/Navigation';
 import MapView, { Marker } from 'react-native-maps';
 import BusMarker from '../../components/BusMarker';
 import busImage from '../../../assets/bus.png';
-import { busFilter } from '../../utils';
+import { busFilter, getCenter } from '../../utils';
 import { setLocation } from '../../actions/locations';
 
 class Home extends React.Component {
   static navigationOptions = {
     header: null
   };
-  
-  render() {
-    const center = {
-      latitude: 12.93286389862078,
-      longitude: 77.6279523409903
-    };
-    const delta = {
-      latitudeDelta: 0.01522,
-      longitudeDelta: 0.00921,
-    }
+
+  shouldComponentUpdate(nprops) {
+    const nselected = nprops.locations.get('selected');
     const selected = this.props.locations.get('selected');
+    const nbuses = nprops.buses;
+    const buses = this.props.buses;
+    return nselected != selected || nbuses != buses;
+  }
+
+  render() {
+    const selected = this.props.locations.get('selected');
+    const { origin, destination, center, delta } = getCenter(selected.toJS());
+    //#HACK
+    if (this._center && this._center != center) {
+      this.map.animateToRegion(
+        _.extend(
+          {},
+          center,
+          delta
+        )
+      );
+    }
+    this._center = center;
+    // end #HACK
     const buses = this.props.buses.toJS();
     const BusMarkers = _.chain(buses).filter(busFilter).map(({ coordinates, rotation, id, seats }) => (
       <BusMarker key={id} seats={seats} coordinates={coordinates} rotation={rotation}/>
     )).value();
-    /* const BusMap = (
-     *   <MapView
-     *       style={styles.map}
-     *       onRegionChange={_.debounce(region => this.props.dispatch(setLocation(region)), 300)}
-     *       initialRegion={_.extend({}, center, delta)}>
-     *     {BusMarkers}
-     *   </MapView>
-     * );*/
-    const BusMap = (<View />);
+    const onRegionChange = _.debounce(region => this.props.dispatch(setLocation(region)), 300);
+    const BusMap = (
+      <MapView
+          ref={ref => { this.map = ref; }}
+          style={styles.map}
+          onRegionChange={onRegionChange}
+          initialRegion={_.extend({}, origin, delta)}>
+        {BusMarkers}
+        <Marker coordinate={origin} anchor={{ x: 0.5, y: 0.5 }} >
+          <View style={{height: 10, width: 10, borderRadius: 10, backgroundColor: '#66ccff', borderColor: 'black', borderWidth: 1}}/>
+        </Marker>
+        {
+          _.isEmpty(destination) ? null : (
+           <Marker coordinate={destination} anchor={{ x: 0.5, y: 0.5 }}/>
+          )
+        }
+      </MapView>
+    );
+    /* const BusMap = (<View />);*/
     return (
       <View style={styles.container}>
         <View style={styles.mapContainer}>
           {BusMap}
-          <View style={{height: 10, width: 10, borderRadius: 10, backgroundColor: '#66ccff', borderColor: 'black', borderWidth: 1, position: 'absolute', top: '50%', left: '50%'}}/>
           <View style={styles.userInput}>
             <TouchableNativeFeedback onPress={() => Navigation.navigate('Locate')}>
               <View style={styles.whereTo}>
