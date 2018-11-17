@@ -3,7 +3,10 @@ import { createReducer } from '../utils';
 
 const initialState = Immutable.fromJS({
   predictions: [],
-  selected: {}
+  selected: {
+    /* coordinates: {lat: 12.9609857, lng: 77.6387316},
+     * description: "Domlur, Bengaluru, Karnataka, India"*/
+  }
 });
 
 const reducers = {

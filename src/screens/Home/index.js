@@ -22,22 +22,26 @@ class Home extends React.Component {
     return nselected != selected || nbuses != buses;
   }
 
-  render() {
-    const selected = this.props.locations.get('selected');
-    const { zoom, origin, destination, center, delta } = getCenter(selected.toJS());
-    console.log('zoom is', zoom);
-    //#HACK
-    if (this._center && this._center != center) {
+  componentWillReceiveProps(nprops) {
+    const selectedRef = this.props.locations.get('selected');
+    const nselectedRef = nprops.locations.get('selected');
+    if (selectedRef !== nselectedRef) {
+      const selected = nselectedRef.toJS();
+      const { center, delta } = getCenter(selected);
       this.map.animateToRegion(
         _.extend(
           {},
           center,
           delta
-        )
+        ),
+        500
       );
     }
-    this._center = center;
-    // end #HACK
+  }
+
+  render() {
+    const selected = this.props.locations.get('selected').toJS();
+    const { zoom, origin, destination, center, delta } = getCenter(selected);
     const buses = this.props.buses.toJS();
     const BusMarkers = _.chain(buses).filter(busFilter).map(({ coordinates, rotation, id, seats }) => (
       <BusMarker key={id} zoom={zoom} seats={seats} coordinates={coordinates} rotation={rotation}/>
@@ -47,7 +51,6 @@ class Home extends React.Component {
       <MapView
           ref={ref => { this.map = ref; }}
           style={styles.map}
-          onRegionChange={onRegionChange}
           initialRegion={_.extend({}, origin, delta)}>
         {BusMarkers}
         <Marker coordinate={origin} anchor={{ x: 0.5, y: 0.5 }} >
