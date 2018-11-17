@@ -6,10 +6,11 @@ export const setLocation = ({ latitude, longitude }) => (dispatch) => {
   console.log('longitude is', longitude);
 };
 
-export const loadPlaces = ({ query }) => (dispatch) => {
-  console.log('loading places');
-  findPlaces({ query }, (err, places) => {
-    console.log('places are', places);
-    console.log('get places error is', err);
-  });
+export const loadPlaces = ({ input }) => (dispatch) => {
+  findPlaces({ input })
+    .then(places => dispatch({
+      type: "LOCATIONS_RECEIVED",
+      payload: places
+    }))
+    .catch(err => console.log('get places error is', err));
 };

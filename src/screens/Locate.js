@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 import { connect } from 'react-redux';
 import { TextInput, FlatList, StyleSheet, Text, View, Image } from 'react-native';
 import { getTheme } from 'react-native-material-kit';
@@ -12,7 +13,7 @@ const uri = 'https://78.media.tumblr.com/839109db9a08ef9b0c0492c8533a84f4/tumblr
 const ListItem = ({ item }) => (
   <View style={[styles.itemPadding, styles.ListValue]}>
     <Text style={{fontSize: 16}}>
-      b {item.key}
+      {item.description}
     </Text>
   </View>
 )
@@ -23,16 +24,18 @@ class Locate extends React.Component {
   };
   
   render() {
-    this.props.dispatch(loadPlaces({ query: 'a' }));
+    const predictions = this.props.locations.get('predictions');
+    console.log('predictions are', predictions.toJS());
     return (
       <View style={styles.container}>
         <TextInput
+            onChangeText={_.debounce(input => this.props.dispatch(loadPlaces({ input })), 300)}
             style={[styles.whereToBox, styles.itemPadding]}
             placeholder="Where to?"
             underlineColorAndroid="transparent"
         />
         <FlatList
-            data={[{key: 'a'}, {key: 'b'}, {key: 'c'}, {key: 'd'}]}
+            data={predictions.toJS()}
             renderItem={({item}) => <ListItem item={item}/>}
         />
       </View>
@@ -54,17 +57,16 @@ const styles = StyleSheet.create({
     shadowRadius: 4
   },
   ListValue: {
-    height: 60,
     borderBottomWidth: 1,
     borderColor: 'lightgray',
     backgroundColor: 'white',
   },
   itemPadding: {
-    padding: 10,
+    padding: 15,
     paddingLeft: 20,
   },
   container: {
   }
 });
 
-export default connect(({ buses }) => ({ buses }))(Locate);
+export default connect(({ locations }) => ({ locations }))(Locate);
