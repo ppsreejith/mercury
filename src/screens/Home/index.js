@@ -41,14 +41,28 @@ class Home extends React.Component {
   }
 
   render() {
+    const timeWindow = {marginLeft: 5, backgroundColor: 'white', padding: 5, borderRadius: 5, borderWidth: 1, borderColor: 'black'}
+    const timeText = {color: 'black', fontSize: 14};
     const selected = this.props.locations.get('selected').toJS();
     const { zoom, origin, destination, center, delta } = getCenter(selected);
     const vehicleInfo = this.props.vehicles.toJS();
     const routeInfo = this.props.trip.get('routes').toJS();
     const vehicles = getVehicles({ selected, vehicleInfo, routeInfo });
     const routes = getRoutes({ selected, routeInfo });
-    const RouteMarkers = _.map(routes, ({ coordinates, strokeColor, strokeColors, strokeWidth}, index) => (
-      <Polyline key={index} coordinates={coordinates} strokeColor={strokeColor} strokeColors={strokeColors} strokeWidth={strokeWidth}/>
+    const RouteMarkers = _.map(routes, ({ eta, ete, coordinates, strokeColor, strokeColors, strokeWidth}, index) => (
+      <View key={index}>
+        <Polyline coordinates={coordinates} strokeColor={strokeColor} strokeColors={strokeColors} strokeWidth={strokeWidth}/>
+        <Marker anchor={{x: 0, y: 0.5}} coordinate={_.first(coordinates)}>
+          <View style={timeWindow}>
+            <Text style={timeText}>{eta}</Text>
+          </View>
+        </Marker>
+        <Marker anchor={{x: 0, y: 0.5}} coordinate={_.last(coordinates)}>
+          <View style={timeWindow}>
+            <Text style={timeText}>{ete}</Text>
+          </View>
+        </Marker>
+      </View>
     ));
     const VehicleMarkers = _.map(vehicles, ({ coordinates, rotation, id, seats, type }) => (
       <VehicleMarker key={id} zoom={zoom} seats={seats} coordinates={coordinates} rotation={rotation} type={type} />

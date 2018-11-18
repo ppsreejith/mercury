@@ -1,5 +1,7 @@
 import _ from 'lodash';
 import routeData from './route-data.json';
+import moment from 'moment';
+import getDate from 'date.js';
 
 export const createReducer = (initialState, reducers) => (state = initialState, action = {}) => (action.type in reducers) ? reducers[action.type](state, action.payload) : state;
 
@@ -36,11 +38,15 @@ export const getRoutes = ({ selected, routeInfo }) => {
   if (_.isEmpty(destination)) {
     return [];
   }
-  const paths = _.map(routeInfo, ({paths}) => paths);
-  const colours = _.map(routeInfo, ({ pathColor}) => pathColor);
-  const params = _.map(_.zip(paths, colours), (values) => ({
+  const paths = _.map(routeInfo, ({ paths }) => paths);
+  const colours = _.map(routeInfo, ({ pathColor }) => pathColor);
+  const etas = _.map(routeInfo, ({ eta }) => getDate(_.get(eta, 'time')));
+  const etes = _.map(routeInfo, ({ ete }) => getDate(_.get(ete, 'time')));
+  const params = _.map(_.zip(paths, colours, etas, etes), (values) => ({
     coordinates: values[0],
     strokeColor: values[1],
+    eta: moment(values[2]).format('hh:mm A'),
+    ete: moment(values[3]).format('hh:mm A'),
     strokeColors: _.times(_.size(values[0]), () => values[1]),
     strokeWidth: 4
   }));

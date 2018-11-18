@@ -12,10 +12,10 @@
         type: 'bus'
       },
       eta: {
-        time: new Date(),
+        time: 'in 3 minutes',
       },
       ete: {
-        time: new Date(),
+        time: 'in 10 minutes',
       },
       pathColor: 'blue',
       paths: [
@@ -36,10 +36,10 @@
         type: 'bus'
       },
       eta: {
-        time: new Date(),
+        time: 'in 15 minutes',
       },
       ete: {
-        time: new Date(),
+        time: 'in 22 minutes',
       },
       pathColor: 'green',
       paths: [
@@ -62,10 +62,10 @@
         type: 'bus'
       },
       eta: {
-        time: new Date(),
+        time: 'in 3 minutes',
       },
       ete: {
-        time: new Date(),
+        time: 'in 10 minutes',
       },
       pathColor: 'yellow',
       paths: [
@@ -86,10 +86,10 @@
         type: 'bus'
       },
       eta: {
-        time: new Date(),
+        time: 'in 15 minutes',
       },
       ete: {
-        time: new Date(),
+        time: 'in 22 minutes',
       },
       pathColor: 'red',
       paths: [
@@ -112,10 +112,10 @@
         type: 'bus'
       },
       eta: {
-        time: new Date(),
+        time: 'in 3 minutes',
       },
       ete: {
-        time: new Date(),
+        time: 'in 10 minutes',
       },
       pathColor: 'orange',
       paths: [
@@ -136,10 +136,10 @@
         type: 'bus'
       },
       eta: {
-        time: new Date(),
+        time: 'in 15 minutes',
       },
       ete: {
-        time: new Date(),
+        time: 'in 22 minutes',
       },
       pathColor: 'black',
       paths: [
