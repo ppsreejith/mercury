@@ -44,10 +44,9 @@ class Home extends React.Component {
     const selected = this.props.locations.get('selected').toJS();
     const { zoom, origin, destination, center, delta } = getCenter(selected);
     const vehicleInfo = this.props.vehicles.toJS();
-    const trip = this.props.trip.toJS();
-    const vehicles = getVehicles({ selected, vehicleInfo, trip });
-    const routes = getRoutes({ selected, trip });
-    console.log('routes are', routes);
+    const routeInfo = this.props.trip.get('routes').toJS();
+    const vehicles = getVehicles({ selected, vehicleInfo, routeInfo });
+    const routes = getRoutes({ selected, routeInfo });
     const RouteMarkers = _.map(routes, ({ coordinates, strokeColor, strokeColors, strokeWidth}, index) => (
       <Polyline key={index} coordinates={coordinates} strokeColor={strokeColor} strokeColors={strokeColors} strokeWidth={strokeWidth}/>
     ));
