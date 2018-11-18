@@ -51,7 +51,7 @@ class Home extends React.Component {
       <MapView
           ref={ref => { this.map = ref; }}
           style={styles.map}
-          initialRegion={_.extend({}, origin, delta)}>
+          initialRegion={_.extend({}, center, delta)}>
         {BusMarkers}
         <Marker coordinate={origin} anchor={{ x: 0.5, y: 0.5 }} >
           <View style={{height: 10, width: 10, borderRadius: 10, backgroundColor: '#66ccff', borderColor: 'black', borderWidth: 1}}/>
