@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 
 import test from './test';
-import buses from './buses';
+import vehicles from './vehicles';
 import locations from './locations';
 
 export default combineReducers({
   test,
-  buses,
+  vehicles,
   locations
 });

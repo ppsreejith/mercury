@@ -12,7 +12,8 @@ const transformedData = _.reduce(
       _.extend({}, value, {
         coordinates: _.first(_.get(value, 'coordinates')),
         rotation: _.first(_.get(value, 'rotation')),
-        seats: _.first(_.get(value, 'seats'))
+        seats: _.first(_.get(value, 'seats')),
+        type: 'bus',
       })
     ),
   {}
@@ -21,7 +22,7 @@ const transformedData = _.reduce(
 const initialState = Immutable.fromJS(transformedData);
 
 const reducers = {
-  BUS_LOCATION_UPDATED: (state, { id, coordinates, rotation }) => state.setIn(id, Immutable.fromJS({ id, coordinates, rotation }))
+  VEHICLE_LOCATION_UPDATED: (state, { id, coordinates, rotation }) => state.setIn(id, Immutable.fromJS({ id, coordinates, rotation }))
 };
 
 export default createReducer(initialState, reducers);

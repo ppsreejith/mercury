@@ -6,7 +6,7 @@ import Navigation from '../../utils/Navigation';
 import MapView, { Marker } from 'react-native-maps';
 import BusMarker from '../../components/BusMarker';
 import busImage from '../../../assets/bus.png';
-import { busFilter, getCenter } from '../../utils';
+import { getCenter, getVehicles } from '../../utils';
 import { setLocation } from '../../actions/locations';
 
 class Home extends React.Component {
@@ -42,10 +42,11 @@ class Home extends React.Component {
   render() {
     const selected = this.props.locations.get('selected').toJS();
     const { zoom, origin, destination, center, delta } = getCenter(selected);
-    const buses = this.props.buses.toJS();
-    const BusMarkers = _.chain(buses).filter(busFilter).map(({ coordinates, rotation, id, seats }) => (
+    const vehicleInfo = this.props.vehicles.toJS();
+    const vehicles = getVehicles({ selected, vehicleInfo });
+    const BusMarkers = _.map(vehicles, ({ coordinates, rotation, id, seats }) => (
       <BusMarker key={id} zoom={zoom} seats={seats} coordinates={coordinates} rotation={rotation}/>
-    )).value();
+    ));
     const onRegionChange = _.debounce(region => this.props.dispatch(setLocation(region)), 300);
     const BusMap = (
       <MapView
@@ -123,4 +124,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default connect(({ buses, locations }) => ({ buses, locations }))(Home);
+export default connect(({ vehicles, locations }) => ({ vehicles, locations }))(Home);

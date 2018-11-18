@@ -4,15 +4,23 @@ export const createReducer = (initialState, reducers) => (state = initialState, 
 
 const in_range = (coord, c_coord, c_range) => (coord < (c_coord + c_range)) && (coord > (c_coord - c_range));
 
-export const busFilter = ({ center, delta }) => (bus) => {
-  const lat = _.get(bus, 'coordinates.latitude', 0);
-  const long = _.get(bus, 'coordinates.longitude', 0);
+export const vehicleFilter = ({ center, delta }) => (vehicle) => {
+  const lat = _.get(vehicle, 'coordinates.latitude', 0);
+  const long = _.get(vehicle, 'coordinates.longitude', 0);
   const c_lat = _.get(center, 'latitude', 90);
   const c_long = _.get(center, 'longitude', 90);
   const c_delta_lat = _.get(delta, 'latitudeDelta', 0);
   const c_delta_long = _.get(delta, 'longitudeDelta', 0);
   return in_range(lat, c_lat, c_delta_lat) && in_range(long, c_long, c_delta_long);
 };
+
+export const getVehicles = ({ selected, vehicleInfo }) => {
+  const { center, delta, destination } = getCenter(selected);
+  if (_.isEmpty(destination)) {
+    return _.filter(vehicleInfo, vehicleFilter({ center, delta }));
+  }
+  return [];
+}
 
 export const getCenter = ({ coordinates, description }) => {
   const origin = {
