@@ -1,5 +1,6 @@
 import Immutable from 'immutable';
 import { createReducer } from '../utils';
+import _ from 'lodash';
 
 const initialState = Immutable.fromJS({
   predictions: [],
