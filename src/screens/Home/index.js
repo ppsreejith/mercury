@@ -3,9 +3,9 @@ import _ from 'lodash';
 import { TouchableNativeFeedback, StyleSheet, Text, View, Button, Image } from 'react-native';
 import { connect } from 'react-redux';
 import Navigation from '../../utils/Navigation';
-import MapView, { Marker } from 'react-native-maps';
+import MapView, { Marker, Polyline } from 'react-native-maps';
 import VehicleMarker from '../../components/VehicleMarker';
-import { getCenter, getVehicles } from '../../utils';
+import { getCenter, getVehicles, getRoutes } from '../../utils';
 import { setLocation } from '../../actions/locations';
 
 class Home extends React.Component {
@@ -18,7 +18,9 @@ class Home extends React.Component {
     const selected = this.props.locations.get('selected');
     const nvehicles = nprops.vehicles;
     const vehicles = this.props.vehicles;
-    return nselected != selected || nvehicles != vehicles;
+    const trip = this.props.trip;
+    const ntrip = nprops.trip;
+    return (nselected !== selected) || (nvehicles !== vehicles) || (trip !== ntrip);
   }
 
   componentWillReceiveProps(nprops) {
@@ -42,9 +44,15 @@ class Home extends React.Component {
     const selected = this.props.locations.get('selected').toJS();
     const { zoom, origin, destination, center, delta } = getCenter(selected);
     const vehicleInfo = this.props.vehicles.toJS();
-    const vehicles = getVehicles({ selected, vehicleInfo });
-    const VehicleMarkers = _.map(vehicles, ({ coordinates, rotation, id, seats }) => (
-      <VehicleMarker key={id} zoom={zoom} seats={seats} coordinates={coordinates} rotation={rotation}/>
+    const trip = this.props.trip.toJS();
+    const vehicles = getVehicles({ selected, vehicleInfo, trip });
+    const routes = getRoutes({ selected, trip });
+    console.log('routes are', routes);
+    const RouteMarkers = _.map(routes, ({ coordinates, strokeColor, strokeColors, strokeWidth}, index) => (
+      <Polyline key={index} coordinates={coordinates} strokeColor={strokeColor} strokeColors={strokeColors} strokeWidth={strokeWidth}/>
+    ));
+    const VehicleMarkers = _.map(vehicles, ({ coordinates, rotation, id, seats, type }) => (
+      <VehicleMarker key={id} zoom={zoom} seats={seats} coordinates={coordinates} rotation={rotation} type={type} />
     ));
     const onRegionChange = _.debounce(region => this.props.dispatch(setLocation(region)), 300);
     const AppMap = (
@@ -52,6 +60,7 @@ class Home extends React.Component {
           ref={ref => { this.map = ref; }}
           style={styles.map}
           initialRegion={_.extend({}, center, delta)}>
+        {RouteMarkers}
         {VehicleMarkers}
         <Marker coordinate={origin} anchor={{ x: 0.5, y: 0.5 }} >
           <View style={{height: 10, width: 10, borderRadius: 10, backgroundColor: '#66ccff', borderColor: 'black', borderWidth: 1}}/>
@@ -123,4 +132,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default connect(({ vehicles, locations }) => ({ vehicles, locations }))(Home);
+export default connect(({ vehicles, locations, trip }) => ({ vehicles, locations, trip }))(Home);

@@ -14,12 +14,26 @@ export const vehicleFilter = ({ center, delta }) => (vehicle) => {
   return in_range(lat, c_lat, c_delta_lat) && in_range(long, c_long, c_delta_long);
 };
 
-export const getVehicles = ({ selected, vehicleInfo }) => {
+export const getVehicles = ({ selected, vehicleInfo, trip }) => {
   const { center, delta, destination } = getCenter(selected);
+  const vehicles = _.isEmpty(destination) ? vehicleInfo : _.chain(trip).map(({ vehicle }) => vehicle).filter(_.identity).value();
+  return _.filter(vehicles, vehicleFilter({ center, delta }));
+}
+
+export const getRoutes = ({ selected, trip }) => {
+  const { destination } = getCenter(selected);
   if (_.isEmpty(destination)) {
-    return _.filter(vehicleInfo, vehicleFilter({ center, delta }));
+    return [];
   }
-  return [];
+  const paths = _.map(trip, ({paths}) => paths);
+  const colours = _.map(trip, ({ pathColor}) => pathColor);
+  const params = _.map(_.zip(paths, colours), (values) => ({
+    coordinates: values[0],
+    strokeColor: values[1],
+    strokeColors: _.times(_.size(values[0]), () => values[1]),
+    strokeWidth: 4
+  }));
+  return params;
 }
 
 export const getCenter = ({ coordinates, description }) => {
