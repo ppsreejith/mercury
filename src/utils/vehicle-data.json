@@ -6,7 +6,8 @@
       longitude: 77.63207674026489
     }],
     rotation: [60],
-    seats: [30]
+    seats: [30],
+    type: 'bus'
   },
   {
     id: '2',
@@ -15,6 +16,7 @@
       longitude: 77.62694835662843
     }],
     rotation: [60],
-    seats: [22]
+    seats: [22],
+    type: 'bus'
   }
 ]

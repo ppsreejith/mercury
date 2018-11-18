@@ -4,8 +4,7 @@ import { TouchableNativeFeedback, StyleSheet, Text, View, Button, Image } from '
 import { connect } from 'react-redux';
 import Navigation from '../../utils/Navigation';
 import MapView, { Marker } from 'react-native-maps';
-import BusMarker from '../../components/BusMarker';
-import busImage from '../../../assets/bus.png';
+import VehicleMarker from '../../components/VehicleMarker';
 import { getCenter, getVehicles } from '../../utils';
 import { setLocation } from '../../actions/locations';
 
@@ -17,9 +16,9 @@ class Home extends React.Component {
   shouldComponentUpdate(nprops) {
     const nselected = nprops.locations.get('selected');
     const selected = this.props.locations.get('selected');
-    const nbuses = nprops.buses;
-    const buses = this.props.buses;
-    return nselected != selected || nbuses != buses;
+    const nvehicles = nprops.vehicles;
+    const vehicles = this.props.vehicles;
+    return nselected != selected || nvehicles != vehicles;
   }
 
   componentWillReceiveProps(nprops) {
@@ -44,16 +43,16 @@ class Home extends React.Component {
     const { zoom, origin, destination, center, delta } = getCenter(selected);
     const vehicleInfo = this.props.vehicles.toJS();
     const vehicles = getVehicles({ selected, vehicleInfo });
-    const BusMarkers = _.map(vehicles, ({ coordinates, rotation, id, seats }) => (
-      <BusMarker key={id} zoom={zoom} seats={seats} coordinates={coordinates} rotation={rotation}/>
+    const VehicleMarkers = _.map(vehicles, ({ coordinates, rotation, id, seats }) => (
+      <VehicleMarker key={id} zoom={zoom} seats={seats} coordinates={coordinates} rotation={rotation}/>
     ));
     const onRegionChange = _.debounce(region => this.props.dispatch(setLocation(region)), 300);
-    const BusMap = (
+    const AppMap = (
       <MapView
           ref={ref => { this.map = ref; }}
           style={styles.map}
           initialRegion={_.extend({}, center, delta)}>
-        {BusMarkers}
+        {VehicleMarkers}
         <Marker coordinate={origin} anchor={{ x: 0.5, y: 0.5 }} >
           <View style={{height: 10, width: 10, borderRadius: 10, backgroundColor: '#66ccff', borderColor: 'black', borderWidth: 1}}/>
         </Marker>
@@ -64,11 +63,11 @@ class Home extends React.Component {
         }
       </MapView>
     );
-    /* const BusMap = (<View />);*/
+    /* const AppMap = (<View />);*/
     return (
       <View style={styles.container}>
         <View style={styles.mapContainer}>
-          {BusMap}
+          {AppMap}
           <View style={styles.userInput}>
             <TouchableNativeFeedback onPress={() => Navigation.navigate('Locate')}>
               <View style={styles.whereTo}>

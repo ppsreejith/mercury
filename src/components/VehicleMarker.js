@@ -5,12 +5,17 @@ import busImage from '../../assets/bus.png';
 import _ from 'lodash';
 import Tooltip from 'rn-tooltip';
 
-export default ({ coordinates, rotation, seats, zoom }) => {
+const icons = {
+  bus: busImage
+}
+
+export default ({ coordinates, rotation, seats, zoom, type }) => {
+  const icon = icons[type];
   return (
     <View>
       <Marker coordinate={coordinates}
               anchor={{ x: 0.5, y: 0.5 }}>
-        <Image style={{height: 40*zoom, width: 40*zoom, transform: [{ rotate: `${rotation + 30}deg`}]}} source={busImage} />
+        <Image style={{height: 40*zoom, width: 40*zoom, transform: [{ rotate: `${rotation + 30}deg`}]}} source={icon} />
       </Marker>
     </View>
   )

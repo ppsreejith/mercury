@@ -1,10 +1,10 @@
 import Immutable from 'immutable';
 import _ from 'lodash';
 import { createReducer } from '../../utils';
-import busData from '../../utils/bus-data';
+import vehicleData from '../../utils/vehicle-data';
 
 const transformedData = _.reduce(
-  busData,
+  vehicleData,
   (acc, value) =>
     _.set(
       acc,
@@ -13,7 +13,6 @@ const transformedData = _.reduce(
         coordinates: _.first(_.get(value, 'coordinates')),
         rotation: _.first(_.get(value, 'rotation')),
         seats: _.first(_.get(value, 'seats')),
-        type: 'bus',
       })
     ),
   {}
