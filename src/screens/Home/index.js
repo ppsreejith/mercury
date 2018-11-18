@@ -55,30 +55,30 @@ class Home extends React.Component {
     ));
     const PickComfortButton = _.isEmpty(destination) ? null : (
       <TouchableNativeFeedback onPress={() => Navigation.navigate('Comfort')}>
-        <View style={{backgroundColor:"white", bottom: 0, position: 'absolute', width: '100%'}}>
-          <Text>Pick Comfort</Text>
+        <View style={{justifyContent: 'center', alignItems: 'center', padding: 10, backgroundColor:"white", bottom: 0, position: 'absolute', width: '100%'}}>
+          <Text style={{ fontSize: 16 }}>Customize</Text>
         </View>
       </TouchableNativeFeedback>
     );
     const onRegionChange = _.debounce(region => this.props.dispatch(setLocation(region)), 300);
-    /* const AppMap = (
-     *   <MapView
-     *       ref={ref => { this.map = ref; }}
-     *       style={styles.map}
-     *       initialRegion={_.extend({}, center, delta)}>
-     *     {RouteMarkers}
-     *     {VehicleMarkers}
-     *     <Marker coordinate={origin} anchor={{ x: 0.5, y: 0.5 }} >
-     *       <View style={{height: 10, width: 10, borderRadius: 10, backgroundColor: '#66ccff', borderColor: 'black', borderWidth: 1}}/>
-     *     </Marker>
-     *     {
-     *       _.isEmpty(destination) ? null : (
-     *        <Marker coordinate={destination} anchor={{ x: 0.5, y: 0.5 }}/>
-     *       )
-     *     }
-     *   </MapView>
-     * );*/
-    const AppMap = (<View />);
+    const AppMap = (
+      <MapView
+          ref={ref => { this.map = ref; }}
+          style={styles.map}
+          initialRegion={_.extend({}, center, delta)}>
+        {RouteMarkers}
+        {VehicleMarkers}
+        <Marker coordinate={origin} anchor={{ x: 0.5, y: 0.5 }} >
+          <View style={{height: 10, width: 10, borderRadius: 10, backgroundColor: '#66ccff', borderColor: 'black', borderWidth: 1}}/>
+        </Marker>
+        {
+          _.isEmpty(destination) ? null : (
+           <Marker coordinate={destination} anchor={{ x: 0.5, y: 0.5 }}/>
+          )
+        }
+      </MapView>
+    );
+    /* const AppMap = (<View />);*/
     return (
       <View style={styles.container}>
         <View style={styles.mapContainer}>

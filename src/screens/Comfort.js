@@ -3,29 +3,45 @@ import _ from 'lodash';
 import { connect } from 'react-redux';
 import { TouchableNativeFeedback, TextInput, FlatList, StyleSheet, Text, View, Image } from 'react-native';
 import Interactable from 'react-native-interactable';
-import { loadPlaces } from '../actions/locations';
-import LocateItem from '../components/LocateItem';
+import {
+  getTheme
+} from 'react-native-material-kit';
+import cardInfo from '../utils/card-data.json';
+import { changeComfort } from '../utils';
+import Navigation from '../utils/Navigation';
 
-class Locate extends React.Component {
+const theme = getTheme();
+
+class Comfort extends React.Component {
   static navigationOptions = {
-    title: 'Select Location'
+    title: 'Customize Trip'
   };
   
   render() {
-    const predictions = this.props.locations.get('predictions');
-    const onChangeText = _.debounce(input => this.props.dispatch(loadPlaces({ input })), 100);
+    const comfort = this.props.trip.get('comfort');
+    const onSelect = (comfort) => () => {
+      this.props.dispatch(changeComfort({comfort}));
+      Navigation.back();
+    };
+    const Cards = _.map(cardInfo, ({ index, title, description, image }) => (
+      <Interactable.View
+          horizontalOnly
+          snapPoints={[{ x: 0 }, { x: -200 }]}
+          onSnap={onSelect(index)}
+          key={index}
+          dragEnabled={comfort !== index}
+      >
+        <View style={theme.cardStyle}>
+          <Image source={{ uri: image }} style={theme.cardImageStyle} />
+          <Text style={theme.cardContentStyle}>
+            {title}
+          </Text>
+        </View>
+      </Interactable.View>
+    ));
     return (
       <View style={styles.container}>
-        <TextInput
-            onChangeText={onChangeText}
-            style={[styles.whereToBox, styles.itemPadding]}
-            placeholder="Where to?"
-            underlineColorAndroid="transparent"
-        />
-        <FlatList
-            data={predictions.toJS()}
-            renderItem={({item}) => <LocateItem item={item}/>}
-        />
+        {Cards}
       </View>
     );
   }
@@ -52,4 +68,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect(({ locations }) => ({ locations }))(Locate);
+export default connect(({ trip }) => ({ trip }))(Comfort);

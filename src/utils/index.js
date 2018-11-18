@@ -26,7 +26,7 @@ const findRoutesForComfort = ({ comfort }) => routeData[comfort];
 export const changeComfort = ({ comfort }) => (dispatch) => {
   const routes = findRoutesForComfort({ comfort });
   dispatch({
-    type: TRIP_SET_TRIP,
+    type: 'TRIP_SET_TRIP',
     payload: { comfort, routes }
   });
 }
