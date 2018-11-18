@@ -56,8 +56,7 @@ const initialState = Immutable.fromJS({
 });
 
 const reducers = {
-  TRIP_RECEIVED: (state, { routes }) => state.set('routes', Immutable.fromJS(routes)),
-  TRIP_SET_COMFORT: (state, { comfort }) => state.set('comfort', comfort)
+  TRIP_SET_TRIP: (state, { comfort, routes }) => Immutable.fromJS({ comfort, routes })
 };
 
 export default createReducer(initialState, reducers);

@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import routeData from './route-data.json';
 
 export const createReducer = (initialState, reducers) => (state = initialState, action = {}) => (action.type in reducers) ? reducers[action.type](state, action.payload) : state;
 
@@ -18,6 +19,16 @@ export const getVehicles = ({ selected, vehicleInfo, routeInfo }) => {
   const { center, delta, destination } = getCenter(selected);
   const vehicles = _.isEmpty(destination) ? vehicleInfo : _.chain(routeInfo).map(({ vehicle }) => vehicle).filter(_.identity).value();
   return _.filter(vehicles, vehicleFilter({ center, delta }));
+}
+
+const findRoutesForComfort = ({ comfort }) => routeData[comfort];
+
+export const changeComfort = ({ comfort }) => (dispatch) => {
+  const routes = findRoutesForComfort({ comfort });
+  dispatch({
+    type: TRIP_SET_TRIP,
+    payload: { comfort, routes }
+  });
 }
 
 export const getRoutes = ({ selected, routeInfo }) => {
