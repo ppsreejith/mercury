@@ -55,8 +55,8 @@ export const getRoutes = ({ selected, routeInfo }) => {
 
 export const getCenter = ({ coordinates, description }) => {
   const origin = {
-    latitude: 12.93286389862078,
-    longitude: 77.6279523409903
+    latitude: 12.894569,
+    longitude: 77.570743
   };
   const destination = coordinates ? {
     latitude: _.get(coordinates, 'lat'),
