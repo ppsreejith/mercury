@@ -1,0 +1,14 @@
+[
+  {
+    index: 0,
+    title: 'Journey Plan 1',
+    subtitle : 'Optimized for Comfort',
+    image: 'https://78.media.tumblr.com/839109db9a08ef9b0c0492c8533a84f4/tumblr_pbey601BM21v2useeo1_1280.jpg'
+  },
+    {
+    index: 1,
+    title: 'Journey Plan 2',
+    subtitle : 'Optimized for Time',
+    image: 'https://78.media.tumblr.com/839109db9a08ef9b0c0492c8533a84f4/tumblr_pbey601BM21v2useeo1_1280.jpg'
+  }
+]

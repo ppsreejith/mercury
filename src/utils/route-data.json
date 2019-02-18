@@ -1,0 +1,194 @@
+{
+  0: [
+    {
+      vehicle: {
+        id: '1',
+        coordinates: {
+          latitude: 12.931998723107322,
+          longitude: 77.63207674026489
+        },
+        rotation: 60,
+        seats: 30,
+        type: 'auto',
+      },
+      eta: {
+        time: 'in 5 minutes',
+      },
+      ete: {
+        time: 'in 30 minutes',
+      },
+      duration: {
+        time: 25
+      },
+      occupancy : {
+        value: "Empty",
+        color: "#27ae60"
+      },
+      fare: 30,
+      pathColor: '#c0392b',
+      paths: [ { latitude: 12.9593473, longitude: 77.64338450000001 },
+        { latitude: 12.9599417, longitude: 77.6428249 },
+        { latitude: 12.9599417, longitude: 77.6428249 },
+        { latitude: 12.9604382, longitude: 77.6427459 },
+        { latitude: 12.9604382, longitude: 77.6427459 },
+        { latitude: 12.9605222, longitude: 77.6418486 },
+        { latitude: 12.9605222, longitude: 77.6418486 },
+        { latitude: 12.9783131, longitude: 77.6407954 },
+        { latitude: 12.9783131, longitude: 77.6407954 },
+        { latitude: 12.9782341, longitude: 77.6387567 } ]
+    },
+    {
+      vehicle: {
+        id: '2',
+        coordinates: {
+          latitude: 12.931998723107322,
+          longitude: 77.63207674026489
+        },
+        rotation: 60,
+        seats: 30,
+        type: 'metro'
+      },
+      fare: 20,
+      eta: {
+        time: 'in 30 minutes',
+      },
+      ete: {
+        time: 'in 37 minutes',
+      },
+      duration: {
+        time: 7
+      },
+      occupancy : {
+        value: "Empty",
+        color: "#27ae60"
+      },
+      pathColor: '#27ae60',
+      paths: [ { latitude: 12.9782341, longitude: 77.6387567 },
+        { latitude: 12.9784129, longitude: 77.6288301 },
+        { latitude: 12.972524, longitude: 77.6195923 },
+        { latitude: 12.9757248, longitude: 77.6056184999999 } ]
+    },
+    {
+      vehicle: {
+        id: '3',
+        coordinates: {
+          latitude: 12.931998723107322,
+          longitude: 77.63207674026489
+        },
+        rotation: 60,
+        seats: 30,
+        type: 'auto'
+      },
+      fare: 25,
+      eta: {
+        time: 'in 37 minutes',
+      },
+      ete: {
+        time: 'in 45 minutes',
+      },
+      duration: {
+        time: 8
+      },
+      occupancy : {
+        value: "Empty",
+        color: "#27ae60"
+      },
+      pathColor: '#c0392b',
+      paths: [ { latitude: 12.9757248, longitude: 77.60561849999999 },
+        { latitude: 12.9751699, longitude: 77.6079532 },
+        { latitude: 12.9751699, longitude: 77.6079532 },
+        { latitude: 12.9743127, longitude: 77.60771629999999 },
+        { latitude: 12.9743127, longitude: 77.60771629999999 },
+        { latitude: 12.9755774, longitude: 77.6024872 },
+        { latitude: 12.9755774, longitude: 77.6024872 },
+        { latitude: 12.9728409, longitude: 77.6032743 },
+        { latitude: 12.9728409, longitude: 77.6032743 },
+        { latitude: 12.9729978, longitude: 77.6014893 },
+        { latitude: 12.9729978, longitude: 77.6014893 },
+        { latitude: 12.9717926, longitude: 77.60105709999999 } ]
+    },
+  ],
+  1: [
+    {
+      vehicle: {
+        id: '1',
+        coordinates: {
+          latitude: 12.931998723107322,
+          longitude: 77.63207674026489
+        },
+        rotation: 60,
+        seats: 30,
+        type: 'bus'
+      },
+      fare: 20,
+      eta: {
+        time: 'in 7 minutes',
+      },
+      ete: {
+        time: 'in 29 minutes',
+      },
+      duration: {
+        time: 22
+      },
+      occupancy : {
+        value: "Crowded",
+        color: "#c0392b"
+      },
+      pathColor: '#2980b9',
+      paths: [ { latitude: 12.9593473, longitude: 77.64338450000001 },
+        { latitude: 12.9599417, longitude: 77.6428249 },
+        { latitude: 12.9599417, longitude: 77.6428249 },
+        { latitude: 12.9604382, longitude: 77.6427459 },
+        { latitude: 12.9604382, longitude: 77.6427459 },
+        { latitude: 12.9605222, longitude: 77.6418486 },
+        { latitude: 12.9605222, longitude: 77.6418486 },
+        { latitude: 12.9667395, longitude: 77.6207163 },
+        { latitude: 12.9667395, longitude: 77.6207163 },
+        { latitude: 12.9721295, longitude: 77.619495 },
+        { latitude: 12.9721295, longitude: 77.619495 },
+        { latitude: 12.9740715, longitude: 77.61207879999999 },
+        { latitude: 12.9740715, longitude: 77.61207879999999 },
+        { latitude: 12.9738616, longitude: 77.6112177 } ]
+    },
+    {
+      vehicle: {
+        id: '2',
+        coordinates: {
+          latitude: 12.931998723107322,
+          longitude: 77.63207674026489
+        },
+        rotation: 60,
+        seats: 30,
+        type: 'auto'
+      },
+      fare: 25,
+      eta: {
+        time: 'in 29 minutes',
+      },
+      ete: {
+        time: 'in 37 minutes',
+      },
+      duration: {
+        time: 8
+      },
+      occupancy : {
+        value: "Empty",
+        color: "#27ae60"
+      },
+      pathColor: '#c0392b',
+      paths: [ { latitude: 12.9757248, longitude: 77.60561849999999 },
+        { latitude: 12.9751699, longitude: 77.6079532 },
+        { latitude: 12.9751699, longitude: 77.6079532 },
+        { latitude: 12.9743127, longitude: 77.60771629999999 },
+        { latitude: 12.9743127, longitude: 77.60771629999999 },
+        { latitude: 12.9755774, longitude: 77.6024872 },
+        { latitude: 12.9755774, longitude: 77.6024872 },
+        { latitude: 12.9728409, longitude: 77.6032743 },
+        { latitude: 12.9728409, longitude: 77.6032743 },
+        { latitude: 12.9729978, longitude: 77.6014893 },
+        { latitude: 12.9729978, longitude: 77.6014893 },
+        { latitude: 12.9717926, longitude: 77.60105709999999 } ]
+      }
+  ],
+  
+}
