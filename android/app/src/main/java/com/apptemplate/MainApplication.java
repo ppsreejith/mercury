@@ -3,6 +3,7 @@ package com.apptemplate;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
 import com.bitgo.randombytes.RandomBytesPackage;
 import com.github.xinthink.rnmk.ReactMaterialKitPackage;
 import com.wix.interactable.Interactable;
@@ -27,6 +28,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new ReactNativeConfigPackage(),
             new RandomBytesPackage(),
           new ReactMaterialKitPackage(),
           new Interactable(),

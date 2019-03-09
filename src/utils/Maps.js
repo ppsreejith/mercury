@@ -1,15 +1,14 @@
 import _ from 'lodash';
-import makeRequest from '../utils/Network';
+import Network from '../utils/Network';
+import Config from 'react-native-config';
 
-const request = params => makeRequest(
-  _.extend({}, params, {
-    baseURL: "https://maps.googleapis.com/maps/api",
-    method: "GET",
-    data: _.extend({}, _.get(params, 'data'), {
-      key: "<INSERT API TOKEN HERE>"
-    })
+const request = params => Network(_.extend({}, params, {
+  baseURL: 'https://maps.googleapis.com/maps/api',
+  method: 'GET',
+  data: _.extend({}, _.get(params, 'data'), {
+    key: Config.GOOGLE_MAPS_API_KEY
   })
-);
+}));
 
 export const findPlaces = ({ input }) => request({
   url: 'place/autocomplete/json',
