@@ -112,34 +112,32 @@ class Home extends React.Component {
     </View>);
 
 
-const DriverBoard = ({fare}) => (
-  <View style={styles2.container}>
-    <View style={styles2.rowDivider}>
-        <View style={[styles2.colDivider,{borderBottomColor:"#eee",borderBottomWidth: 1}]}>
+    const DriverBoard = ({fare}) => (
+      <View style={styles2.container}>
+        <View style={styles2.rowDivider}>
+          <View style={[styles2.colDivider,{borderBottomColor:"#eee",borderBottomWidth: 1}]}>
             <View style={{flex:2, justifyContent: 'space-between', alignItems: 'center'}}>
-                <Image source={require('../../../assets/raja.png')} style={{width: 100, height: 100, borderRadius: 100/2}} />
-                <Text>Auto Raja</Text>
-                <Text>KA05 6437</Text>
+              <Image source={require('../../../assets/raja.png')} style={{width: 100, height: 100, borderRadius: 100/2}} />
+              <Text>Auto Raja</Text>
+              <Text>KA05 6437</Text>
             </View>
             <View  style={{flex:3, justifyContent: 'space-between', padding: 10}}>
-                <Text><Text  style={{fontWeight:"800"}}>To: </Text><Text>Indiranagar Metro Station</Text></Text>
+              <Text><Text  style={{fontWeight:"800"}}>To: </Text><Text>Indiranagar Metro Station</Text></Text>
             </View>
-        </View>
-        <View style={styles2.colDivider}>
+          </View>
+          <View style={styles2.colDivider}>
             <View style={styles2.rowDivider}>
-                <Text style={styles2.title}>₹{26 + fare}</Text>
-                <Text style={styles2.backgroundText}>Total Fare</Text>
+              <Text style={styles2.title}>₹{26 + fare}</Text>
+              <Text style={styles2.backgroundText}>Total Fare</Text>
             </View>
             <View style={styles2.rowDivider}>
-                <Text style={styles2.title}>₹{fare}</Text>
-                <Text style={styles2.backgroundText}>Meter Mele</Text>
+              <Text style={styles2.title}>₹{fare}</Text>
+              <Text style={styles2.backgroundText}>Meter Mele</Text>
             </View>
-        
-        </View>
-      <Button style={{backgroundColor: "#fff", color: "#333", width: "100%"}}>Call Driver</Button>    
-    </View>
-        
-</View>);
+          </View>
+          <Button style={{backgroundColor: "#fff", color: "#333", width: "100%"}}>Call Driver</Button>    
+        </View>        
+      </View>);
 
     const WaitingBoard = () => (
       <View style={styles2.container}>
@@ -169,29 +167,28 @@ const DriverBoard = ({fare}) => (
       const totalFare = _.reduce(routeData[index], (acc, {fare}) => acc + fare, 0);
       return (
         <TouchableOpacity onPress={onSelect(index)}>
-            <View style={[theme.cardStyle, styles.cards, selected]}>
-              <Text style={{padding: 10}}>
-                <Text style={{fontWeight:"800"}}>{title}</Text><Text> : {subtitle}</Text>
-              </Text>
-              <View style={[{flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around', paddingBottom: 5, marginBottom: 5, borderBottomColor:"#eee", borderBottomWidth: 1}]}>
+          <View style={[theme.cardStyle, styles.cards, selected]}>
+            <Text style={{padding: 10}}>
+              <Text style={{fontWeight:"800"}}>{title}</Text><Text> : {subtitle}</Text>
+            </Text>
+            <View style={[{flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around', paddingBottom: 5, marginBottom: 5, borderBottomColor:"#eee", borderBottomWidth: 1}]}>
               <Text style={{fontSize:15}}><Text>Total Duration : </Text><Text style={{fontWeight:"800"}}>{totalTime} Minutes</Text></Text>
               <Text style={{fontSize:15}}><Text>Estd. Fare : </Text> <Text  style={{fontWeight:"800"}}>Rs {totalFare}</Text></Text>
-              </View>
-              <View style={{flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
-                {Vehicles}
-              </View>
             </View>
+            <View style={{flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
+              {Vehicles}
+            </View>
+          </View>
         </TouchableOpacity>
       );
     });
+    
     const timeWindow = {marginLeft: 5, backgroundColor: 'white', padding: 5, borderRadius: 5, borderWidth: 1, borderColor: 'black'}
     const timeText = {color: 'black', fontSize: 14};
     const selected = this.props.locations.get('selected').toJS();
     const isOnTrip = !this.props.locations.get('phases').isEmpty();
     const isDriverAssigned = !_.isUndefined(this.props.locations.getIn(['trip', 'driver']));
-    console.log('location is', this.props.locations.toJS());
     const isWaiting = this.props.locations.get('isWaiting');
-    console.log('is waiting is', isWaiting);
     const isHaggling = this.props.locations.get('isHaggling');
     const isNotPlanningTrip = _.isUndefined(this.props.locations.getIn(['selected', 'coordinates', 'lat']));
     const origin = this.props.locations.get('origin').toJS();
@@ -231,7 +228,7 @@ const DriverBoard = ({fare}) => (
         </Marker>
         {
           _.isEmpty(destination) ? null : (
-           <Marker coordinate={destination} anchor={{ x: 0.5, y: 0.5 }}/>
+            <Marker coordinate={destination} anchor={{ x: 0.5, y: 0.5 }}/>
           )
         }
       </MapView>
@@ -270,35 +267,35 @@ const DriverBoard = ({fare}) => (
 }
 const styles2 = StyleSheet.create({
   container: {
-      flex: 0,
-      alignItems: 'center',
-      justifyContent: 'center',
-      flexDirection: 'row',
-      backgroundColor: '#fff',
-      borderRadius: 5,
-      padding: 10,
-      margin: 20,
+    flex: 0,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+    backgroundColor: '#fff',
+    borderRadius: 5,
+    padding: 10,
+    margin: 20,
   },
   rowDivider: {
-      flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
-      flexDirection: 'column'
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column'
   },
   colDivider: {
-      alignItems: 'center',
-      justifyContent: 'center',
-      flexDirection: 'row'
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row'
   },
   title: {
-      fontSize: 50,
-      fontWeight: "800",
+    fontSize: 50,
+    fontWeight: "800",
   },
   backgroundText: {
-      color: "#aaa"
+    color: "#aaa"
   },
   white: {
-      color: "#333"
+    color: "#333"
   }
 });
 const styles = StyleSheet.create({
